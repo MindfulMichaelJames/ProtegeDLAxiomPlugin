@@ -1,11 +1,9 @@
 # Description Logic Renderer  - Plugin for Protégé
 
-----
 ## Prerequisites
 Ensure that you have Maven installed.  
 Ensure that you have Protege 5.X.X installed.
 
-----
 ## Installation Instructions
 1. Launch Terminal
 2. cd to “DescriptionLogicAxiomComponentPlugin” folder
@@ -15,5 +13,3 @@ Ensure that you have Protege 5.X.X installed.
 6 Launch Protégé
 7. Go to Window>View>Ontology Views > DL Axiom Component
 8. Drop the plugin in a window slot
-
-----
