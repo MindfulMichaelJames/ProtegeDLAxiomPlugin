@@ -1,4 +1,4 @@
-package dlview;
+package za.ac.uct.cs.dlrenderer;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
@@ -27,21 +27,14 @@ import org.semanticweb.owlapi.model.OWLAnnotationSubject;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.manchestersyntax.renderer.ManchesterOWLSyntaxOWLObjectRendererImpl;
 
 /**
  * 
- * @author Michael Harrison, Larry Liu
+ * @author Michael Harrison
  *
  */
-public class DLAxiomView extends AbstractOWLViewComponent {
-	
-	/*
-	-----Uncomment if you need to implement buttons-------
-	//private JPanel topPanel,bottomPanel;
-	//private JFrame mainFrame;
-	//private JButton button1,button2,button3,button4,button5,button6,button7,button8,button9,button10;
-	-----Uncomment if you need to implement buttons-------
-	*/
+public class DLAxiomRenderer extends AbstractOWLViewComponent {
 	
 	private JTextArea textArea;
 	private JScrollPane scrollPlanes;
@@ -70,14 +63,17 @@ public class DLAxiomView extends AbstractOWLViewComponent {
     		OWLDataFactory factory = manager.getOWLDataFactory();
 			OWLClass curClass = factory.getOWLClass(e.getIRI());
 			OWLClassExpression expression = curClass;
+			ManchesterOWLSyntaxOWLObjectRendererImpl rendering = new ManchesterOWLSyntaxOWLObjectRendererImpl();
 			Set<OWLClassAxiom> curAxioms = ont.getAxioms(curClass);
 			
 			String[] parts = new String[2];
 			textArea.setText("");
 			for (OWLClassAxiom ax : curAxioms){ //for each axiom in current set of axioms
 
-				String output  = String.valueOf(ax); //type casting to a string
-				//Case for DISJOINT
+				String output  = String.valueOf(rendering.render(ax)); //type casting to a string
+
+
+//				Case for DISJOINT
 				if (output.contains(" DisjointWith ")){
 					output = output.replace(" DisjointWith ", " \u2293 ").concat(" = \u2205"); //replacing disjoint with the respective symbol and adding on additional symbol
 				}
@@ -85,31 +81,31 @@ public class DLAxiomView extends AbstractOWLViewComponent {
 				if (output.contains(" some "))
 				{
 						parts = output.split("\\s(?=\\S{1,100}\\ssome)");
-						
+
 						int sizeOfArray = parts.length; //getting length of array
 						output = parts[0];
 						for(int i = 1 ; i < sizeOfArray; i++)
 						{
 							output = output + " \u2203" + parts[i];
-							for(int j = 0 ; j <sizeOfArray-1;j++) // if there are 2 some's. size of array is 3 So we wan t to replace it 2 times. 
+							for(int j = 0 ; j <sizeOfArray-1;j++) // if there are 2 some's. size of array is 3 So we wan t to replace it 2 times.
 							{
 								output = output.replace(" some ", ".");
 							}
 						}
-						
-					
+
+
 				}
 				//Case for ONLY
 				if (output.contains(" only ")){
 
 					parts = output.split("\\s(?=\\S{1,100}\\sonly)");
-						
+
 						int sizeOfArray = parts.length; //getting length of array
 						output = parts[0];
 						for(int i = 1 ; i < sizeOfArray; i++)
 						{
 							output = output + " \u2200" + parts[i];
-							for(int j = 0 ; j <sizeOfArray-1;j++) // if there are 2 some's. size of array is 3 So we wan t to replace it 2 times. 
+							for(int j = 0 ; j <sizeOfArray-1;j++) // if there are 2 some's. size of array is 3 So we wan t to replace it 2 times.
 							{
 								output = output.replace(" only ", ".");
 							}
@@ -120,13 +116,13 @@ public class DLAxiomView extends AbstractOWLViewComponent {
 				if (output.contains(" value ")){
 
 					parts = output.split("\\s(?=\\S{1,100}\\svalue)");
-						
+
 						int sizeOfArray = parts.length; //getting length of array
 						output = parts[0];
 						for(int i = 1 ; i < sizeOfArray; i++)
 						{
 							output = output + " \u2203" + parts[i];
-							for(int j = 0 ; j <sizeOfArray-1;j++) // if there are 2 some's. size of array is 3 So we wan t to replace it 2 times. 
+							for(int j = 0 ; j <sizeOfArray-1;j++) // if there are 2 some's. size of array is 3 So we wan t to replace it 2 times.
 							{
 								output = output.replace(" value ", ".");
 							}
@@ -141,7 +137,7 @@ public class DLAxiomView extends AbstractOWLViewComponent {
 					parts = output.split("\\s(?=\\S{1,100}\\smin)");
 					/*
 						Part 0 = pizza and
-						part 1 = (hasTopping min 3 Thing) and 
+						part 1 = (hasTopping min 3 Thing) and
 						part 2 = (hasTopping min 6 Thing)
 					*/
 					int sizeOfArray = parts.length; //getting length of array
@@ -158,9 +154,9 @@ public class DLAxiomView extends AbstractOWLViewComponent {
 
 							String conversion = outputDuplicate.substring(0,secondIndex+1);
 							output = output + " \u2265" + number + parts[i].replace(" min ",".").replace(conversion,"");
-			
+
 						}
-		
+
 
 				}
 				//Case for MAX
@@ -168,7 +164,7 @@ public class DLAxiomView extends AbstractOWLViewComponent {
 					parts = output.split("\\s(?=\\S{1,100}\\smax)");
 					/*
 						Part 0 = pizza and
-						part 1 = (hasTopping min 3 Thing) and 
+						part 1 = (hasTopping min 3 Thing) and
 						part 2 = (hasTopping min 6 Thing)
 					*/
 					int sizeOfArray = parts.length; //getting length of array
@@ -185,9 +181,9 @@ public class DLAxiomView extends AbstractOWLViewComponent {
 
 							String conversion = outputDuplicate.substring(0,secondIndex+1);
 							output = output + " \u2264" + number + parts[i].replace(" max ",".").replace(conversion,"");
-			
+
 						}
-		
+
 
 				}
 
@@ -196,7 +192,7 @@ public class DLAxiomView extends AbstractOWLViewComponent {
 					parts = output.split("\\s(?=\\S{1,100}\\sexactly)");
 					/*
 						Part 0 = pizza and
-						part 1 = (hasTopping min 3 Thing) and 
+						part 1 = (hasTopping min 3 Thing) and
 						part 2 = (hasTopping min 6 Thing)
 					*/
 					int sizeOfArray = parts.length; //getting length of array
@@ -213,14 +209,14 @@ public class DLAxiomView extends AbstractOWLViewComponent {
 
 							String conversion = outputDuplicate.substring(0,secondIndex+1);
 							output = output + " \u003D" + number + parts[i].replace(" exactly ",".").replace(conversion,"");
-			
+
 						}
 
 				}
 				//Case for EQUIVALENT/SUBCLASS/AND/OR/NOT/INDIVIDUALS
 				// using \\b to ensure that the word won't be mismatched in other words. For example, "and" will be picked up in "england"
 				output = output.replaceAll("\\bEquivalentTo\\b", "\u2261").replaceAll("\\bSubClassOf\\b", "\u2291").replaceAll("\\band\\b", "\u2293").replaceAll("\\bor\\b", "\u2294").replaceAll("\\bnot\\b", "\u00AC").replaceAll(" , ","} \u2294 {");
-				
+
 				if (textArea.getText().equals("")){
 					textArea.append(output);
 				}
@@ -238,10 +234,6 @@ public class DLAxiomView extends AbstractOWLViewComponent {
 
 	@Override
 	protected void initialiseOWLView() throws Exception {
-		//bottomPanel = new JPanel (new GridLayout (2, 3));
-		//setLayout(new FlowLayout());
-		//mainFrame = new JFrame("Plugin");
-		//topPanel = new JPanel(new BorderLayout());
 		setLayout(new BorderLayout());
 		textArea = new JTextArea(); //Area where the DL syntax will be displayed. 
 		textArea.setEditable(false); //Locking the text area making it not editable
@@ -251,54 +243,7 @@ public class DLAxiomView extends AbstractOWLViewComponent {
         add(scrollPlanes);
         selectionModel = getOWLWorkspace().getOWLSelectionModel();
 		selectionModel.addListener(listener); //adding listener to each selection in the ontology.
-        //------------------------------------------------------------
-        /*Code to add buttons for each of the axiom symbols. However, this was not within the scope of our project
-        */
-        //------------------------------------------------------------
-        //topPanel.add(scrollPlanes, BorderLayout.CENTER);
-        //mainFrame.add(topPanel);
-        //mainFrame.setVisible(true); 
-		//add(textArea, BorderLayout.CENTER);
-        //
 
-        //setLayout(new GridLayout (2, 3));
-        //button1.setFont(new Font("Arial", Font.PLAIN, 18));
-        /*
-        button1=new JButton("\u2293"); 
-        button2=new JButton("\u2264"); 
-        button3=new JButton("\u2203"); 
-        button4=new JButton("\u2200"); 
-        button5=new JButton("\u2265"); 
-        button6=new JButton("\u2261"); 
-        button7=new JButton("\u2291"); 
-        button8=new JButton("\u2293"); 
-        button9=new JButton("\u2294"); 
-        button10=new JButton("SAVE"); 
-
-		Box box = Box.createHorizontalBox();
-        box.add(Box.createHorizontalGlue());
-        box.add(Box.createVerticalStrut(10));
-		box.add(scrollPlanes);
-		add(box,BorderLayout.NORTH);
-		box = Box.createHorizontalBox();
-		box.add(Box.createHorizontalGlue());
-		box.add(Box.createVerticalStrut(10));
-        box.add(button1);
-        box.add(button2);
-        box.add(button3);
-        box.add(button4);
-        box.add(button5);
-        add(box);
-        box = Box.createHorizontalBox();
-		box.add(Box.createHorizontalGlue());
-        box.add(button6);
-        box.add(button7);
-        box.add(button8);
-        box.add(button9);
-        box.add(button10);
-		add(box,BorderLayout.SOUTH);
-		*/
-		//------------------------------------------------------------
 		
 	}
 

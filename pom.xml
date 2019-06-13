@@ -8,84 +8,115 @@
 		<version>7</version>
 	</parent>
 
-	<groupId>org.protege.dl</groupId>
-	<artifactId>org.protege.dl.DLAxiomComponent</artifactId>
-	<version>1.0</version>
-	<name>DL Axiom Component</name> 
-	<description>A plugin to replace manchester syntax with DL Axiom Components.</description> 
-
-
+	<groupId>za.ac.uct.cs</groupId>
+	<artifactId>DLAxiomRenderer</artifactId>
+	<version>2.0</version>
+	<name>DL Axiom Renderer</name>
+	<description>A plugin to replace Manchester Syntax with Description Logic Syntax.</description>
 	<packaging>bundle</packaging>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<protege.version>5.5.0</protege.version>
+	</properties>
 	
 	<dependencies>
 		<dependency>
 			<groupId>edu.stanford.protege</groupId>
-			<artifactId>org.protege.common</artifactId>
-			<version>4.3.0</version>
+			<artifactId>protege-common</artifactId>
+			<version>5.5.0</version>
 		</dependency>
 
-        <dependency>
+		<dependency>
 			<groupId>edu.stanford.protege</groupId>
-			<artifactId>org.protege.editor.core.application</artifactId>
-			<version>4.3.0</version>
-        </dependency>
+			<artifactId>protege-editor-core</artifactId>
+			<version>5.5.0</version>
+		</dependency>
 
-        <dependency>
+		<dependency>
 			<groupId>edu.stanford.protege</groupId>
-            <artifactId>org.protege.editor.owl</artifactId>
-			<version>4.3.0</version>
-        </dependency>
+			<artifactId>protege-editor-owl</artifactId>
+			<version>5.5.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
 		<plugins>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
-              <version>3.0</version>
+              <version>3.8.1</version>
               <configuration>
-                <source>1.6</source>
-                <target>1.6</target>
+                <source>1.8</source>
+                <target>1.8</target>
               </configuration>
             </plugin>
+
             <plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-				<version>2.3.7</version>
+				<version>4.2.0</version>
 				<extensions>true</extensions>
 				<configuration>
-					<instructions>
-						<Bundle-ClassPath>.</Bundle-ClassPath>
-						<Bundle-SymbolicName>${project.artifactId};singleton:=true</Bundle-SymbolicName>
-						<Bundle-Vendor>The Protege Development Team</Bundle-Vendor>
-						<Import-Package>
-							org.apache.log4j.*;version="[1.2,2)", 
-							org.protege.editor.core.*;version="4.3",
-							org.protege.editor.owl.*;version="4.3",
-							*
-						</Import-Package>
-						<Include-Resource>plugin.xml, {maven-resources}</Include-Resource>
-						<Private-Package>skeleton</Private-Package>
-					</instructions>
-					<executions>
-						<execution>
-							<id>bundle-manifest</id>
-							<phase>install</phase>
-							<goals>    
-								<goal>manifest</goal>
-							</goals>   
-						</execution>
-					</executions>
+				<instructions>
+					<Bundle-Activator>org.protege.editor.owl.ProtegeOWL</Bundle-Activator>
+					<Bundle-ClassPath>.</Bundle-ClassPath>
+					<Bundle-SymbolicName>${project.artifactId};singleton:=true</Bundle-SymbolicName>
+					<Bundle-Vendor>The Protege Development Team</Bundle-Vendor>
+					<Import-Package>
+						org.apache.log4j.*;version="2.11.2",
+						protege-editor-core.*;version="5.5.0",
+						protege-editor-owl.*;version="5.5.0",
+						*
+					</Import-Package>
+					<Include-Resource>{maven-resources}</Include-Resource>
+					<Private-Package>${project.artifactId}</Private-Package>
+				</instructions>
 				</configuration>
             </plugin>
+
             <plugin>
               <artifactId>maven-eclipse-plugin</artifactId>
-              <version>2.9</version>
+              <version>2.10</version>
               <configuration>
                 <pde>true</pde>
               </configuration>
             </plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.5</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 </project>

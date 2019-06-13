@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.4"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
 <plugin>
-    <extension id="dl.view"
+    <extension id="DLAxiomRenderer"
                point="org.protege.editor.core.application.ViewComponent">
-        <label value="DL Axiom Component"/>
-        <class value="dlview.DLAxiomView"/>
+        <label value="DL Axiom Renderer"/>
+        <class value="za.ac.uct.cs.dlrenderer.DLAxiomRenderer"/>
        	<headerColor value="@org.protege.ontologycolor"/>
         <category value="@org.protege.ontologycategory"/>
     </extension>
