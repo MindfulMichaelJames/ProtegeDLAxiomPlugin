@@ -1,5 +1,8 @@
 # Description Logic Renderer  - Plugin for Protégé
 
+This plugin is a "view" component for Protégé. 
+It renders the axioms of the selected entity in Description Logic syntax.
+
 ## To simply install the plugin:
 
 ### Prerequisites 
