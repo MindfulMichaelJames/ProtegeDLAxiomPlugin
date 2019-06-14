@@ -1,10 +1,19 @@
 # Description Logic Renderer  - Plugin for Protégé
 
-## Prerequisites
-Ensure that you have the latest version of Maven installed.  
-Ensure that you have Protege 5.5.0 installed.
+## To simply install the plugin:
 
-## Installation Instructions
+### Prerequisites 
+Ensure that you have Protege 5.5.0 installed (although older versions should still work).
+
+### Instructions
+Copy the JAR file from the "target" folder in this repository and put it in the "plugins" folder of your Protégé installation.
+
+## To build from source:
+
+### Prerequisites
+Ensure that you have the latest version of Maven installed.  
+
+### Instructions
 1. Launch Terminal
 2. cd to “ProtegeDLAxiomPlugin” folder
 3. Type “mvn clean install”
