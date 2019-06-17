@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <plugin>
-    <extension id="DLAxiomRenderer"
+    <extension id="dl-render"
                point="org.protege.editor.core.application.ViewComponent">
-        <label value="DL Axiom Renderer"/>
+        <label value="DL Class Axiom Renderer"/>
         <class value="za.ac.uct.cs.dlrenderer.DLAxiomRenderer"/>
        	<headerColor value="@org.protege.ontologycolor"/>
-        <category value="@org.protege.ontologycategory"/>
+        <category value="@org.protege.classcategory"/>
     </extension>
 </plugin>

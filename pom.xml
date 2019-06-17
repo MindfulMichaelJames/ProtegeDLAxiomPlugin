@@ -9,9 +9,9 @@
 	</parent>
 
 	<groupId>za.ac.uct.cs</groupId>
-	<artifactId>DLAxiomRenderer</artifactId>
+	<artifactId>dl-render</artifactId>
 	<version>2.0</version>
-	<name>DL Axiom Renderer</name>
+	<name>DL Class Axiom Renderer</name>
 	<description>A plugin to replace Manchester Syntax with Description Logic Syntax.</description>
 	<packaging>bundle</packaging>
 
@@ -80,14 +80,6 @@
 					<Private-Package>${project.artifactId}</Private-Package>
 				</instructions>
 				</configuration>
-            </plugin>
-
-            <plugin>
-              <artifactId>maven-eclipse-plugin</artifactId>
-              <version>2.10</version>
-              <configuration>
-                <pde>true</pde>
-              </configuration>
             </plugin>
 		</plugins>
 	</build>
