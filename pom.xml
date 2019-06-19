@@ -17,26 +17,38 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<protege.version>5.5.0</protege.version>
+		<protege.version>5.2.0</protege.version>
 	</properties>
 	
 	<dependencies>
 		<dependency>
 			<groupId>edu.stanford.protege</groupId>
 			<artifactId>protege-common</artifactId>
-			<version>5.5.0</version>
+			<version>5.2.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>edu.stanford.protege</groupId>
 			<artifactId>protege-editor-core</artifactId>
-			<version>5.5.0</version>
+			<version>5.2.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>edu.stanford.protege</groupId>
 			<artifactId>protege-editor-owl</artifactId>
-			<version>5.5.0</version>
+			<version>5.2.0</version>
+		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>edu.stanford.protege</groupId>-->
+<!--			<artifactId>org.semanticweb.owl.owlapi</artifactId>-->
+<!--			<version>3.4.4</version>-->
+<!--		</dependency>-->
+
+		<dependency>
+			<groupId>net.sourceforge.owlapi</groupId>
+			<artifactId>owlapi-distribution</artifactId>
+			<version>4.2.2</version>
 		</dependency>
 	</dependencies>
 
@@ -72,8 +84,8 @@
 					<Bundle-Vendor>The Protege Development Team</Bundle-Vendor>
 					<Import-Package>
 						org.apache.log4j.*;version="2.11.2",
-						protege-editor-core.*;version="5.5.0",
-						protege-editor-owl.*;version="5.5.0",
+						protege-editor-core.*;version="5.2.0",
+						protege-editor-owl.*;version="5.2.0",
 						*
 					</Import-Package>
 					<Include-Resource>{maven-resources}</Include-Resource>

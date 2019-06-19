@@ -23,5 +23,5 @@ Ensure that you have the latest version of Maven installed.
 4. JAR file will be in the “target” folder within “ProtegeDLAxiomPlugin” folder.
 5. Copy the JAR file into the “plugins” folder within Protégé root folder. 
 6. Launch Protégé
-7. Go to Window>View>Ontology Views > DL Axiom Renderer
+7. Go to Window>View>Class Views > DL Axiom Renderer
 8. Drop the plugin in a window slot

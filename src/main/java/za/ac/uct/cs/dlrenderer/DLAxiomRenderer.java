@@ -10,7 +10,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.GridLayout;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.protege.editor.owl.model.selection.OWLSelectionModel;
 import org.protege.editor.owl.model.selection.OWLSelectionModelListener;
 import org.protege.editor.owl.ui.view.AbstractOWLViewComponent;
