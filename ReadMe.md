@@ -9,7 +9,7 @@ It renders the axioms of the selected entity in Description Logic syntax.
 Ensure that you have Protege 5.5.0 installed (although older versions should still work).
 
 ### Instructions
-Copy the [JAR file](https://github.com/MindfulMichaelJames/ProtegeDLAxiomPlugin/blob/master/target/dl-render-2.0.jar) from the "target" folder in this repository and put it in the "plugins" folder of your Protégé installation.
+Click [here](https://github.com/MindfulMichaelJames/ProtegeDLAxiomPlugin/blob/master/target/dl-render-2.0.jar) to download the JAR plugin and put it in the "plugins" folder of your Protégé installation.
 
 ## To build from source:
 
