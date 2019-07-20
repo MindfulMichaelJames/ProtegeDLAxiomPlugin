@@ -9,7 +9,10 @@ It renders the axioms of the selected entity in Description Logic syntax.
 Ensure that you have Protege 5.5.0 installed (although older versions should still work).
 
 ### Instructions
-Click [here](https://github.com/MindfulMichaelJames/ProtegeDLAxiomPlugin/blob/master/target/dl-render-2.0.jar) to download the JAR plugin and put it in the "plugins" folder of your Protégé installation.
+1. Click [here](https://github.com/MindfulMichaelJames/ProtegeDLAxiomPlugin/blob/master/target/dl-render-2.0.jar) to download the JAR plugin and put it in the "plugins" folder of your Protégé installation.
+2. Launch Protégé
+3. Go to Window>View>Class Views > DL Axiom Renderer
+4. Drop the plugin in a window slot
 
 ## To build from source:
 
@@ -17,11 +20,13 @@ Click [here](https://github.com/MindfulMichaelJames/ProtegeDLAxiomPlugin/blob/ma
 Ensure that you have the latest version of Maven installed.  
 
 ### Instructions
-1. Launch Terminal
-2. cd to “ProtegeDLAxiomPlugin” folder
-3. Type “mvn clean install”
+1. Clone/download this repository.
+2. Open a Terminal and navigate to the directory of the downloaded repository (`cd ProtegeDLAxiomPlugin`).
+3. Enter the command `mvn clean install`
 4. JAR file will be in the “target” folder within “ProtegeDLAxiomPlugin” folder.
 5. Copy the JAR file into the “plugins” folder within Protégé root folder. 
 6. Launch Protégé
 7. Go to Window>View>Class Views > DL Axiom Renderer
 8. Drop the plugin in a window slot
+
+## A screenshot of the plugin in action
