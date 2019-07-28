@@ -29,6 +29,7 @@ import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.manchestersyntax.renderer.ManchesterOWLSyntaxOWLObjectRendererImpl;
 
+import static za.ac.uct.cs.dlrenderer.FunctionMappings.treeToDL;
 import static za.ac.uct.cs.dlrenderer.StructureModifiers.*;
 
 /**
@@ -64,13 +65,13 @@ public class DLAxiomRenderer extends AbstractOWLViewComponent {
     		OWLOntology ont = manager.getActiveOntology();
     		OWLDataFactory factory = manager.getOWLDataFactory();
 			OWLClass curClass = factory.getOWLClass(e.getIRI());
+			//getOWLDataProperty
 			Set<OWLClassAxiom> curAxioms = ont.getAxioms(curClass);
-			
-			String[] parts = new String[2];
+
 			textArea.setText("");
 			for (OWLClassAxiom ax : curAxioms){ //for each axiom in current set of axioms
 				Node<String> root = owlToTree(String.valueOf(ax));
-				String output = joinExpression(root);
+				String output = treeToDL(root);
 
 				if (textArea.getText().equals("")){
 					textArea.append(output);

@@ -30,5 +30,6 @@ Ensure that you have the latest version of Maven installed.
 7. Go to Window>View>Class Views > DL Axiom Renderer
 8. Drop the plugin in a window slot
 
-## A screenshot of the plugin in action
-![alt text](https://github.com/MindfulMichaelJames/ProtegeDLAxiomPlugin/blob/master/screenshots/screenshot1.png "Screenshot of plugin in action")
+## Screenshots of the plugin in action
+![alt text](https://github.com/MindfulMichaelJames/ProtegeDLAxiomPlugin/blob/master/screenshots/screenshot1.png "Pizza ontology")<br/><br/>
+![alt text](https://github.com/MindfulMichaelJames/ProtegeDLAxiomPlugin/blob/master/screenshots/screenshot2.png "Stuff ontology")
